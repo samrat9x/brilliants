@@ -1,45 +1,104 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
-    <style>
-        /* Style the page background */
-        body {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff7e5f, #feb47b);
-            font-family: Arial, sans-serif;
-            color: #ffffff;
-        }
-
-        /* Center the text in a container */
-        .container {
-            text-align: center;
-        }
-
-        /* Style the heading */
-        h1 {
-            font-size: 3em;
-            margin: 0;
-        }
-
-        /* Style the "coming soon" text */
-        p {
-            font-size: 1em;
-            text-transform: lowercase;
-            opacity: 0.8;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Brilliants</h1>
-        <p>coming soon</p>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Brilliants</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Brilliants</h1>
+    </header>
+    <nav>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"> </i>
+      </div>
+      <ul>
+        <li>
+          <a href="#"> Home </a>
+        </li>
+        <li>
+          <a href="#"> Math </a>
+        </li>
+        <li>
+          <a href="#"> Science </a>
+        </li>
+        <li>
+          <a href="#"> Tech </a>
+        </li>
+        <li>
+          <a href="/brilliants/post/simulation/simulation.html"> Simulation </a>
+        </li>
+        <li>
+          <a href="#"> About </a>
+        </li>
+        <li>
+          <a href="#"> Contact </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="content">
+      <div class="post">
+        <img
+          alt="A detailed image of a mathematical equation on a chalkboard"
+          height="400"
+          src="https://storage.googleapis.com/a1aa/image/e5I28mNZxL2kYKoiRFQf6OnpAsDZtifVmcLv4Pgvm8f1rKDPB.jpg"
+          width="600"
+        />
+        <h2>The Beauty of Mathematics</h2>
+        <p>
+          Mathematics is not just about numbers and equations. It's about
+          understanding the world around us. From the symmetry of a snowflake to
+          the complexity of a fractal, math is everywhere.
+        </p>
+      </div>
+      <div class="post">
+        <img
+          alt="A detailed image of a scientist working in a laboratory"
+          height="400"
+          src="https://storage.googleapis.com/a1aa/image/KW4mhqd9016NF52HICHZ3tjtXu3TpWGZrqt1xexnKOofqywTA.jpg"
+          width="600"
+        />
+        <h2>Science in Everyday Life</h2>
+        <p>
+          Science helps us understand the natural world. From the food we eat to
+          the technology we use, science is an integral part of our daily lives.
+          Discover the wonders of science and how it impacts us every day.
+        </p>
+      </div>
+      <div class="post">
+        <img
+          alt="A detailed image of a modern computer setup with multiple screens"
+          height="400"
+          src="https://storage.googleapis.com/a1aa/image/ABqJDAf7PjRiJKcbElUMvF3OyG8BynLvDtv3HQtmhAZfqywTA.jpg"
+          width="600"
+        />
+        <h2>The Future of Technology</h2>
+        <p>
+          Technology is evolving at a rapid pace. From artificial intelligence
+          to quantum computing, the future of technology is both exciting and
+          unpredictable. Stay updated with the latest trends and innovations in
+          the tech world.
+        </p>
+      </div>
     </div>
-</body>
+    <footer>
+      <p>© 2023 Brilliants. All rights reserved.</p>
+    </footer>
+    <script>
+      document
+        .querySelector(".menu-toggle")
+        .addEventListener("click", function () {
+          document.querySelector("nav ul").classList.toggle("show");
+        });
+    </script>
+  </body>
 </html>

@@ -1,0 +1,79 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Brilliants</title>
+    <link rel="stylesheet" href="/brilliants/style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .post {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Brilliants</h1>
+    </header>
+    <nav>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"> </i>
+      </div>
+      <ul>
+        <li>
+          <a href="#"> Home </a>
+        </li>
+        <li>
+          <a href="#"> Math </a>
+        </li>
+        <li>
+          <a href="#"> Science </a>
+        </li>
+        <li>
+          <a href="#"> Tech </a>
+        </li>
+        <li>
+          <a href="#"> Simulation </a>
+        </li>
+        <li>
+          <a href="#"> About </a>
+        </li>
+        <li>
+          <a href="#"> Contact </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="content">
+      <div class="post physics">
+        <img
+          alt="A detailed image of a mathematical equation on a chalkboard"
+          height="400"
+          src="https://images.unsplash.com/photo-1633493702341-4d04841df53b?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          width="600"
+        />
+        <h2>Physics Simulations</h2>
+        <p>I love Physics</p>
+      </div>
+    </div>
+    <footer>
+      <p>© 2023 Brilliants. All rights reserved.</p>
+    </footer>
+    <script>
+      document
+        .querySelector(".menu-toggle")
+        .addEventListener("click", function () {
+          document.querySelector("nav ul").classList.toggle("show");
+        });
+      document.querySelector(".physics").addEventListener("click", (e) => {
+        window.location.href = "physics/physics.html";
+      });
+    </script>
+  </body>
+</html>
