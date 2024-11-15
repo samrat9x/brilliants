@@ -9,6 +9,13 @@ header {
   color: #fff;
   padding: 10px 0;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+header .logo #svg1 {
+  width: 50px;
+  height: 50px;
 }
 header h1 {
   margin: 0;
