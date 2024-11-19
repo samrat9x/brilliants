@@ -52,14 +52,6 @@
         cursor: pointer;
         transition: background 0.2s ease-in-out;
       }
-      input[type="range"]::-ms-thumb {
-        width: 20px;
-        height: 20px;
-        background: #007bff;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: background 0.2s ease-in-out;
-      }
     </style>
   </head>
   <body>
@@ -78,7 +70,19 @@
 
       const lensCenter = canvas.width / 2;
       const focalLength = 100; // Distance of the focal points from the lens
-      const objectHeight = 50; // Height of the object arrow
+      let objectHeight = 50; // Fixed height for the object (image height)
+
+      // Load the object image
+      const objectImage = new Image();
+      objectImage.src = "./img/tom.png"; // Path to your object image
+
+      // Load the image for the lens's image representation
+      const lensImage = new Image();
+      lensImage.src = "./img/tom.png"; // Path to your image (can be the same or different)
+
+      objectImage.onload = lensImage.onload = () => {
+        drawScene(); // Redraw once both images are loaded
+      };
 
       function drawScene() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -104,16 +108,17 @@
         ctx.arc(lensCenter + focalLength, canvas.height / 2, 5, 0, Math.PI * 2);
         ctx.fill();
 
-        // Draw object (as an arrow)
+        // Draw object (as an image)
         const objectX = parseInt(objectSlider.value);
-        ctx.strokeStyle = "#008000";
-        ctx.beginPath();
-        ctx.moveTo(objectX, canvas.height / 2);
-        ctx.lineTo(objectX, canvas.height / 2 - objectHeight);
-        ctx.lineTo(objectX - 10, canvas.height / 2 - objectHeight + 10);
-        ctx.moveTo(objectX, canvas.height / 2 - objectHeight);
-        ctx.lineTo(objectX + 10, canvas.height / 2 - objectHeight + 10);
-        ctx.stroke();
+        const objectWidth =
+          (objectHeight * objectImage.width) / objectImage.height; // Maintain aspect ratio
+        ctx.drawImage(
+          objectImage,
+          objectX - objectWidth / 2,
+          canvas.height / 2 - objectHeight,
+          objectWidth,
+          objectHeight
+        );
 
         // Calculate image position using lens formula
         const distanceObject = lensCenter - objectX;
@@ -121,22 +126,17 @@
           (focalLength * distanceObject) / (distanceObject - focalLength);
         const imageX = lensCenter + distanceImage;
 
-        // Draw image (as an arrow, inverted if needed)
-        ctx.strokeStyle = "#ff00ff";
+        // Draw image (as an inverted image)
         const imageHeight = (-objectHeight * distanceImage) / distanceObject;
-        ctx.beginPath();
-        ctx.moveTo(imageX, canvas.height / 2);
-        ctx.lineTo(imageX, canvas.height / 2 - imageHeight);
-        ctx.lineTo(
-          imageX - 10,
-          canvas.height / 2 - imageHeight + Math.sign(imageHeight) * 10
+        const imageWidth =
+          (Math.abs(imageHeight) * lensImage.width) / lensImage.height; // Maintain aspect ratio
+        ctx.drawImage(
+          lensImage,
+          imageX - imageWidth / 2,
+          canvas.height / 2 - imageHeight,
+          imageWidth,
+          Math.abs(imageHeight) // Use absolute height for rendering
         );
-        ctx.moveTo(imageX, canvas.height / 2 - imageHeight);
-        ctx.lineTo(
-          imageX + 10,
-          canvas.height / 2 - imageHeight + Math.sign(imageHeight) * 10
-        );
-        ctx.stroke();
 
         // Draw rays from the object to the lens and beyond
         ctx.setLineDash([2, 3]);
@@ -149,22 +149,13 @@
         ctx.lineTo(imageX, canvas.height / 2 - imageHeight);
         ctx.stroke();
 
-        // Ray 2: From the top of the object through the center of the lens, dotted line extending to image head
+        // Ray 2: From the top of the object through the center of the lens
         ctx.beginPath();
         ctx.moveTo(objectX, canvas.height / 2 - objectHeight);
         ctx.lineTo(lensCenter, canvas.height / 2);
         ctx.lineTo(imageX, canvas.height / 2 - imageHeight);
         ctx.stroke();
 
-        ctx.setLineDash([]); // Reset line dash for other elements
-
-        // Draw the red dotted line dividing the lens into two parts (through the pole)
-        ctx.setLineDash([2, 3]); // Dotted line
-        ctx.strokeStyle = "#888"; // Red color
-        ctx.beginPath();
-        ctx.moveTo(lensCenter, canvas.height / 2 - 100); // Top of the lens
-        ctx.lineTo(lensCenter, canvas.height / 2 + 100); // Bottom of the lens
-        ctx.stroke();
         ctx.setLineDash([]); // Reset line dash for other elements
       }
 
